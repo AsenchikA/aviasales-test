@@ -1,0 +1,5 @@
+.result-panel {
+  &__result:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,40 @@
+.sorting-panel {
+  margin-bottom: 20px;
+
+  &__tab-list {
+    display: flex;
+  }
+
+  &__tab-option {
+    width: 50%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  &__tab-option:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  
+  &__tab-option:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  &__tab-option--cheap {
+    background-color: #2196F3;
+    color: #fff;
+  }
+
+  &--quick {
+    background-color: #fff;
+    color: #4A4A4A;
+    border-bottom: 1px solid #DFE5EC;
+  }
+}

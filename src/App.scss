@@ -1,0 +1,17 @@
+.app {
+  &__container {
+    width: 764px;
+    margin: 0 auto;
+  }
+
+  &__header {
+    padding: 35px 0;
+    text-align: center;
+  }
+
+  &__main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
