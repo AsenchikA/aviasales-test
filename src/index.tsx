@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
-import App from './App';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import { rootReducer } from './reducers';
+import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
+import { AppContainer } from './App';
+import './index.scss';
+import { rootReducer } from './reducers';
 
 export const store = createStore(
   rootReducer,
@@ -15,8 +15,7 @@ export const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <AppContainer />
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
-

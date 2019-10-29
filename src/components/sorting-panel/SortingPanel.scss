@@ -15,6 +15,9 @@
     letter-spacing: 0.5px;
     text-transform: uppercase;
     cursor: pointer;
+    background-color: #fff;
+    color: #4A4A4A;
+    border: 1px solid #DFE5EC;
   }
 
   &__tab-option:first-child {
@@ -27,14 +30,9 @@
     border-bottom-right-radius: 5px;
   }
 
-  &__tab-option--cheap {
+  &__tab-option--active {
     background-color: #2196F3;
+    border-color: #2196F3;
     color: #fff;
-  }
-
-  &--quick {
-    background-color: #fff;
-    color: #4A4A4A;
-    border-bottom: 1px solid #DFE5EC;
   }
 }

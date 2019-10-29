@@ -15,14 +15,14 @@ const TRANSFER_OPTION_LIST = [
     text: '1 пересадка',
   },
   {
-    id: 3,
+    id: 4,
     text: '2 пересадки',
   },
   {
-    id: 4,
+    id: 5,
     text: '3 пересадки',
   },
-]
+];
 
 export const FilterPanel = () => {
   return (
@@ -40,14 +40,14 @@ export const FilterPanel = () => {
                   <label className='filter-panel__transfer-option-checkbox' htmlFor={`checkbox${option.id}`}>
                     <i className='filter-panel__transfer-option-checkbox-icon' />
                     {option.text}
-                    <input type="checkbox" id={`checkbox${option.id}`} />
+                    <input type='checkbox' id={`checkbox${option.id}`} />
                   </label>
                 </li>
-              )
+              );
             })
           }
         </ul>
       </div>
     </div>
-  )
-}
+  );
+};
