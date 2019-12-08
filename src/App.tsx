@@ -8,16 +8,18 @@ import { FilterPanel } from './components/filter-panel/FilterPanel';
 import { ResultPanelContainer } from './components/result-panel/ResultPanel';
 import { SortingPanel } from './components/sorting-panel/SortingPanel';
 import { ReactComponent as Logo } from './img/logo.svg';
-import { ESortingTypes } from './models';
+import { EFilterOptions, ESortingTypes } from './models';
 import { IRootState } from './reducers';
 
 interface IMapStateToProps {
+  filterList: EFilterOptions[];
   sortingOption: ESortingTypes;
 }
 
 interface IMapDispatchToProps {
   getData: () => void;
-  setSortingOption: (option: ESortingTypes) => void;
+  setSorting: (option: ESortingTypes) => void;
+  setFilter: (option: EFilterOptions) => void;
 }
 
 type IAppProps = IMapStateToProps & IMapDispatchToProps;
@@ -30,7 +32,9 @@ class App extends React.Component<IAppProps> {
   public render() {
     const {
       sortingOption,
-      setSortingOption,
+      setSorting,
+      setFilter,
+      filterList,
     } = this.props;
 
     return (
@@ -44,11 +48,15 @@ class App extends React.Component<IAppProps> {
             />
           </header>
           <main className='app__main'>
-            <FilterPanel />
+            <FilterPanel
+              className='app__filter-panel'
+              activeList={filterList}
+              onChange={setFilter}
+            />
             <div className='app__results'>
               <SortingPanel
                 activeOption={sortingOption}
-                onChange={setSortingOption}
+                onChange={setSorting}
               />
               <ResultPanelContainer />
             </div>
@@ -60,12 +68,14 @@ class App extends React.Component<IAppProps> {
 }
 
 const mapStateToProps = (state: IRootState): IMapStateToProps => ({
+  filterList: state.settings.filterList,
   sortingOption: state.settings.sortingOption,
 });
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<IRootState, null, Action>): IMapDispatchToProps => ({
   getData: () => dispatch(actions.getData()),
-  setSortingOption: (option: ESortingTypes) => dispatch(actions.setSortingOption(option)),
+  setFilter: (option: EFilterOptions) => dispatch(actions.setFilter(option)),
+  setSorting: (option: ESortingTypes) => dispatch(actions.setSorting(option)),
 });
 
 export const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);

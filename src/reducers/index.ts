@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
-import { ITicket } from '../models';
 import { settings } from '../reducers/settings';
-import { tickets } from '../reducers/tickets';
+import { ITicketsModel, tickets } from '../reducers/tickets';
 import { ISettings } from './settings';
 
 export const rootReducer = combineReducers({
@@ -10,6 +9,6 @@ export const rootReducer = combineReducers({
 });
 
 export interface IRootState {
-  tickets: ITicket[];
+  tickets: ITicketsModel;
   settings: ISettings;
 }

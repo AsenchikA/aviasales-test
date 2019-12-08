@@ -1,32 +1,57 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
+import { EFilterOptions } from '../../models';
 import './FilterPanel.scss';
 
 const TRANSFER_OPTION_LIST = [
   {
-    id: 1,
+    id: EFilterOptions.ALL,
     text: 'Все',
   },
   {
-    id: 2,
+    id: EFilterOptions.WITHOUT,
     text: 'Без пересадок',
   },
   {
-    id: 3,
+    id: EFilterOptions.ONE,
     text: '1 пересадка',
   },
   {
-    id: 4,
+    id: EFilterOptions.TWO,
     text: '2 пересадки',
   },
   {
-    id: 5,
+    id: EFilterOptions.THREE,
     text: '3 пересадки',
   },
 ];
 
-export const FilterPanel = () => {
+interface IFilterPanelProps {
+  activeList: EFilterOptions[];
+  className?: string;
+  onChange(option: EFilterOptions): void;
+}
+
+export const FilterPanel = (props: IFilterPanelProps) => {
+
+  const onChange = (event: FormEvent<HTMLInputElement>) => {
+    const {
+      currentTarget: {
+        dataset: {
+          id,
+        },
+      },
+    } = event;
+
+    props.onChange(Number(id) as EFilterOptions);
+  };
+
+  const {
+    activeList,
+    className,
+  } = props;
+
   return (
-    <div className='filter-panel'>
+    <div className={`filter-panel ${className ? className : ''}`}>
       <span className='filter-panel__title'>Количество пересадок</span>
       <div className='filter-panel__content'>
         <ul className='filter-panel__transfer-list'>
@@ -37,10 +62,23 @@ export const FilterPanel = () => {
                   key={option.id}
                   className='filter-panel__transfer-option'
                 >
-                  <label className='filter-panel__transfer-option-checkbox' htmlFor={`checkbox${option.id}`}>
+                  <input
+                    type='checkbox'
+                    checked={
+                      Boolean(activeList && activeList.findIndex((activeOption) => activeOption === option.id) !== -1)
+                    }
+                    id={`filter${option.id}`}
+                    data-id={option.id}
+                    onChange={onChange}
+                    className='filter-panel__transfer-option-input'
+                  />
+                  <label
+                    data-id={option.id}
+                    className='filter-panel__transfer-option-checkbox'
+                    htmlFor={`filter${option.id}`}
+                  >
                     <i className='filter-panel__transfer-option-checkbox-icon' />
                     {option.text}
-                    <input type='checkbox' id={`checkbox${option.id}`} />
                   </label>
                 </li>
               );

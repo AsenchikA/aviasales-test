@@ -23,6 +23,16 @@
     }
   }
 
+  &__transfer-option-input {
+    display: none;
+
+    &:checked + .filter-panel__transfer-option-checkbox {
+      .filter-panel__transfer-option-checkbox-icon {
+        border-radius: 50%;
+      }
+    }
+  }
+
   &__transfer-option-checkbox {
     display: flex;
     justify-content: flex-start;
@@ -32,10 +42,6 @@
     line-height: 20px;
     color: #4A4A4A;
     cursor: pointer;
-
-    & input {
-      display: none;
-    }
   }
 
   &__transfer-option-checkbox-icon {

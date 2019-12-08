@@ -37,7 +37,7 @@ class ResultPanel extends React.Component<IMapStateToProps> {
 }
 
 const mapStateToProps = (state: IRootState): IMapStateToProps => ({
-  tickets: state.tickets,
+  tickets: state.tickets.filteredList,
 });
 
 export const ResultPanelContainer = connect(mapStateToProps)(ResultPanel);

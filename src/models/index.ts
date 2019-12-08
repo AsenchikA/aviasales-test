@@ -16,3 +16,11 @@ export enum ESortingTypes {
   QUICK,
   CHEAP,
 }
+
+export enum EFilterOptions {
+  ALL,
+  WITHOUT,
+  ONE,
+  TWO,
+  THREE,
+}

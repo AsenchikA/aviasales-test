@@ -1,6 +1,6 @@
 .app {
   &__container {
-    width: 764px;
+    width: 754px;
     margin: 0 auto;
   }
 
@@ -13,5 +13,13 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+  }
+
+  &__filter-panel {
+    margin-right: 20px;
+  }
+
+  &__results {
+    flex-grow: 1;
   }
 }
