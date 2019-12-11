@@ -9,15 +9,25 @@ interface IMapStateToProps {
   tickets: ITicket[];
 }
 
-class ResultPanel extends React.Component<IMapStateToProps> {
+interface IResultPanelState {
+  countShowenTickets: number;
+}
+
+class ResultPanel extends React.Component<IMapStateToProps, IResultPanelState> {
+
+  public state = {
+    countShowenTickets: 10,
+  };
+
   public render() {
     const { tickets } = this.props;
+    const { countShowenTickets } = this.state;
 
     return (
       <div className='result-panel'>
         <ul className='ticket-list'>
           {
-            tickets.map((ticketItem, index) => {
+            tickets.slice(0, countShowenTickets).map((ticketItem, index) => {
               return (
                 <li
                   key={`${ticketItem.price}-${index}`}
@@ -31,8 +41,20 @@ class ResultPanel extends React.Component<IMapStateToProps> {
             })
           }
         </ul>
+        <button
+          onClick={this.onMoreButtonClick}
+          className='result-panel__more-button'
+        >
+          показать ещё 10
+        </button>
       </div>
     );
+  }
+
+  private onMoreButtonClick = () => {
+    this.setState((prevState) => ({
+      countShowenTickets: prevState.countShowenTickets + 10,
+    }));
   }
 }
 
